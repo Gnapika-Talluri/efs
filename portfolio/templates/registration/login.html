@@ -11,8 +11,7 @@
       Please try again.
     </p>
   {% else %}
-    <p>Please, use the following form to log-in. If you don't have an account <a href="">Sign Up here</a></p>
-
+    <p>Please, use the following form to log-in. If you don't have an account <a href="{% url 'portfolio:SignUp' %}">Sign Up here</a></p>
   {% endif %}
   <div class="login-form">
     <form action="{% url 'login' %}" method="post">

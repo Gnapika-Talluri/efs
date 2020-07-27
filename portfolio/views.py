@@ -12,9 +12,6 @@ from .serializers import CustomerSerializer
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-import io
-from django.http import FileResponse
-from reportlab.pdfgen import canvas
 
 
 
@@ -23,10 +20,6 @@ def home(request):
    return render(request, 'portfolio/home.html',
                  {'portfolio': home})
 
-
-def password_reset(request):
-   return render(request, 'registration/password_reset.html',
-                 {'registration': password_reset})
 
 @login_required
 def customer_list(request):
@@ -197,14 +190,15 @@ class CustomerList(APIView):
 
 def SignUp(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('portfolio:home')
+            return render(request, 'portfolio/home.html',
+                          {'portfolio': home})
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
     return render(request, 'portfolio/SignUp.html', {'form': form})
