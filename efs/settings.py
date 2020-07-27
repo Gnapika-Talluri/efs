@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'mathfilters',
     'django.contrib.humanize',
-    'wkhtmltopdf',
 ]
 
 MIDDLEWARE = [

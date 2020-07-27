@@ -4,7 +4,6 @@ from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 from django.contrib.auth import views as auth_views
 from . import views as portfolio_views
-from wkhtmltopdf.views import PDFTemplateView
 
 app_name = 'portfolio'
 urlpatterns = [
@@ -25,8 +24,6 @@ urlpatterns = [
     path('investment/<int:pk>/edit/', views.investment_edit, name='investment_edit'),
     path('investment/<int:pk>/delete/', views.investment_delete, name='investment_delete'),
     url(r'^customers_json/', views.CustomerList.as_view()),
-    url(r'^pdf/$', PDFTemplateView.as_view(template_name='portfolio.html',
-                                           filename='portfolio.pdf'), name='pdf')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
