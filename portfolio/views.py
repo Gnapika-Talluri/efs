@@ -12,6 +12,9 @@ from .serializers import CustomerSerializer
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
 
 
 
@@ -192,7 +195,7 @@ class CustomerList(APIView):
         return Response(serializer.data)
 
 
-def signup(request):
+def SignUp(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -204,4 +207,4 @@ def signup(request):
             return redirect('portfolio:home')
     else:
         form = UserCreationForm()
-    return render(request, 'portfolio/signup.html', {'form': form})
+    return render(request, 'portfolio/SignUp.html', {'form': form})

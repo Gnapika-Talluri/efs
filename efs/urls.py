@@ -19,6 +19,7 @@ from django.conf.urls import include, url
 from django.contrib.auth import views
 from django.contrib.auth import views as auth_views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('portfolio.urls')),
